@@ -1,4 +1,4 @@
-import React, { useState } from 'react';  
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FaUsers,
@@ -16,24 +16,16 @@ import {
 // Sidebar component
 const Sidebar = () => {
   const [isHovered, setIsHovered] = useState(false); // State to manage the hover effect
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true); // State to toggle sidebar on smaller screens
-
-  const toggleSidebarVisibility = () => {
-    setIsSidebarVisible(!isSidebarVisible);
-  };
 
   return (
     <div
-      style={{
-        ...sidebarStyle(isHovered),
-        display: isSidebarVisible ? 'block' : 'none', // Hide sidebar on mobile
-      }}
+      style={sidebarStyle(isHovered)}
       onMouseEnter={() => setIsHovered(true)} // Expand when hovered
       onMouseLeave={() => setIsHovered(false)} // Collapse when unhovered
     >
-      {/* Toggle Sidebar for Mobile */}
+      {/* Toggle Sidebar */}
       <button
-        onClick={toggleSidebarVisibility}
+        onClick={() => setIsHovered(!isHovered)}
         style={toggleButtonStyle}
       >
         <FaBars />
@@ -60,24 +52,21 @@ const Sidebar = () => {
   );
 };
 
-// Sidebar styles with dynamic width based on hover state
+// Sidebar styles with dynamic width and background color based on hover state
 const sidebarStyle = (isHovered) => ({
   width: isHovered ? '200px' : '50px',
   height: '100vh',
-  background: 'transparent', // Background is now transparent
+  background: isHovered ? '#2c3e50' : 'transparent',  // Transparent when minimized
   color: '#fff',
   padding: '5px',
   boxSizing: 'border-box',
   position: 'fixed',
   top: 0,
   left: 0,
-  transition: 'width 0.3s ease',
+  transition: 'width 0.3s ease, background 0.3s ease', // Add transition for background
   overflow: 'hidden',
   zIndex: 1000,
-  transition: 'width 0.3s ease',
 });
-
-// Header style
 const headerStyle = {
   textAlign: 'center',
   marginBottom: '30px',
@@ -86,18 +75,15 @@ const headerStyle = {
   color: '#ecf0f1',
 };
 
-// List style
 const ulStyle = {
   listStyleType: 'none',
   paddingLeft: 0,
 };
 
-// List item style
 const liStyle = {
   marginBottom: '10px',
 };
 
-// Link style
 const linkStyle = {
   textDecoration: 'none',
   color: '#ecf0f1',
@@ -109,13 +95,11 @@ const linkStyle = {
   transition: 'background 0.3s ease',
 };
 
-// Icon style
 const iconStyle = {
   marginRight: '10px',
   fontSize: '20px',
 };
 
-// SidebarItem component
 const SidebarItem = ({ to, icon, text }) => (
   <li style={liStyle}>
     <Link
@@ -130,7 +114,6 @@ const SidebarItem = ({ to, icon, text }) => (
   </li>
 );
 
-// Toggle button style
 const toggleButtonStyle = {
   background: 'transparent',
   border: 'none',
@@ -140,18 +123,6 @@ const toggleButtonStyle = {
   top: '20px',
   left: '10px',
   cursor: 'pointer',
-};
-
-// Media Query: hide sidebar on smaller screens (mobile view)
-const mediaQueryStyle = {
-  '@media (max-width: 768px)': {
-    sidebar: {
-      display: 'none',
-    },
-    toggleButton: {
-      display: 'block',
-    },
-  },
 };
 
 export default Sidebar;
