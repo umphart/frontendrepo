@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';  
 import { Link } from 'react-router-dom';
 import {
   FaUsers,
@@ -64,7 +64,7 @@ const Sidebar = () => {
 const sidebarStyle = (isHovered) => ({
   width: isHovered ? '200px' : '50px',
   height: '100vh',
-  background: '#2c3e50',
+  background: 'transparent', // Background is now transparent
   color: '#fff',
   padding: '5px',
   boxSizing: 'border-box',
