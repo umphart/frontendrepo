@@ -19,7 +19,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import image1 from './images/image1.jpg';
 import image2 from './images/image2.jpg';
-import image3 from './images/images.jpg';
 import image4 from './images/logo.png';
 import image5 from './images/images.jpg';
 
@@ -36,7 +35,7 @@ ChartJS.register(
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const galleryImages = [image1, image2, image3, image4, image5];
+  const galleryImages = [ image2, image4, image5];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [studentStats, setStudentStats] = useState({
     primary: 0,
@@ -211,7 +210,7 @@ const AdminDashboard = () => {
           {[{ icon: <FaUsers size={50} />, label: 'Manage Students', path: 'manage-students' },
             { icon: <FaUsers size={50} />, label: 'Manage Staff', path: 'manage-staff' },
             { icon: <FaTasks size={50} />, label: 'Sections and Classes', path: 'sections' },
-            { icon: <FaChartBar size={50} />, label: 'Exam and Reports', path: 'exam-report' },
+            // { icon: <FaChartBar size={50} />, label: 'Exam and Reports', path: 'exam-report' },
             { icon: <FaBook size={50} />, label: 'Manage Subjects', path: 'subject' }].map((item, index) => (
               <div key={index} style={styles.iconItem} onClick={() => handleRedirect(item.path)}>
                 <div style={styles.icon}>{item.icon}</div>

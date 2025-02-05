@@ -205,7 +205,7 @@ const LoginPage = ({ onLogin }) => {
   return (
     <Container style={styles.container}>
       <div style={styles.formContainer}>
-        <h2 style={styles.title}>UMAR INT COL.</h2>
+        <h2 style={styles.title}>U-PHAOUQ INT COL.</h2>
         {forgotPassword ? (
           // Forgot Password Form
           <Form onSubmit={handlePasswordResetRequest}>
