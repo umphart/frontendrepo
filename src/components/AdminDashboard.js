@@ -17,7 +17,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import image1 from './images/image1.jpg';
 import image2 from './images/image2.jpg';
 import image4 from './images/logo.png';
 import image5 from './images/images.jpg';
