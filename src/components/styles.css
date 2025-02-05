@@ -1,0 +1,48 @@
+.students-list {
+    padding: 20px;
+  }
+  
+  .nav-tabs {
+    margin-bottom: 20px;
+  }
+  
+  .my-3 {
+    margin: 20px 0;
+  }
+  @media print {
+  .nav-tabs,
+  .my-3,
+  .mb-3 {
+    display: none;
+  }
+
+  .school-logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100px;
+  }
+
+  .students-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .class-header {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 20px;
+  }
+}
+/* Hide specific elements during print */
+@media print {
+  .nav-tabs,
+  .my-3,
+  .mb-3 {
+    display: none;
+  }
+
+  .students-list {
+    margin: 0;
+  }
+}
+
