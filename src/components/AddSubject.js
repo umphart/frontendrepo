@@ -150,7 +150,7 @@ const AddSubject = () => {
     <div style={styles.container}>
       {/* Back Arrow for navigating to previous page */}
       <div style={styles.arrow} onClick={handleBack}>
-        ⬅️
+        ⬅️ Back
       </div>
 
       <h3 style={styles.heading}>{isEditMode ? 'Edit Subject' : 'Add New Subject'}</h3>

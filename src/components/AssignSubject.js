@@ -82,7 +82,7 @@ const AssignSubject = () => {
     <div style={styles.container}>
       {/* Back Arrow for navigating to previous page */}
       <div style={styles.arrow} onClick={handleBack}>
-        ⬅️
+        ⬅️ Back
       </div>
 
       <h3 style={styles.heading}>Assign Subject to Staff</h3>
@@ -155,10 +155,12 @@ const styles = {
   },
   arrow: {
     position: 'absolute',
+    color: 'green',
     top: '20px',
     left: '20px',
     fontSize: '15px',
     cursor: 'pointer',
+    
   },
   heading: {
     fontSize: '28px',

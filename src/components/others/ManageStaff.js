@@ -16,7 +16,7 @@ const ManageStaff = () => {
         onClick={() => navigate(-1)} // Navigate to the previous page
         style={styles.arrowButton}
       >
-        ⬅️
+        ⬅️ Back
       </button>
 
       <h2 style={styles.heading}>Manage Staff Records</h2>

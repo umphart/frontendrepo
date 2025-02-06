@@ -20,6 +20,12 @@ const Junior2 = () => {
 
   return (
     <div style={styles.container}>
+       <button 
+        style={styles.backButton} 
+        onClick={() => navigate(-1)} // This will go back to the previous page
+      >
+        ⬅️ Back
+      </button>
       <h2 style={styles.heading}>Junior 2 Class</h2>
       {loading ? (
         <p>Loading students...</p>

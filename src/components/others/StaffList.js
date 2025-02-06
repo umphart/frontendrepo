@@ -59,7 +59,7 @@ const StaffList = () => {
         onClick={() => navigate(-1)} // Navigate to the previous page
         style={styles.arrowButton}
       >
-        ⬅️
+        ⬅️ Back
       </button>
 
       <h2 style={styles.heading}>Staff List</h2>

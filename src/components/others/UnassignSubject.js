@@ -76,7 +76,7 @@ const UnassignSubject = () => {
     <div style={styles.container}>
       {/* Arrow for navigating back to previous page */}
       <div style={styles.arrow} onClick={() => navigate(-1)}>
-        ⬅️
+        ⬅️ Back
       </div>
 
       <h3 style={styles.heading}>Unassign Subject from Staff</h3>
@@ -149,6 +149,7 @@ const styles = {
   },
   arrow: {
     position: 'absolute',
+    color: 'green',
     top: '20px',
     left: '20px',
     fontSize: '15px',

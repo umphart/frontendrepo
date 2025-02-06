@@ -101,7 +101,7 @@ const ViewExam = () => {
     <div style={styles.container}>
       {/* Arrow for navigating back to previous page */}
       <div style={styles.arrow} onClick={() => navigate(-1)}>
-        ⬅️
+        ⬅️ Back
       </div>
 
       <h2 style={styles.heading}>View and Print Examination</h2>

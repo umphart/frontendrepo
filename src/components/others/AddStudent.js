@@ -144,7 +144,7 @@ const AddStudent = ({ onStudentAdded }) => {
           textDecoration: 'none',
         }}
       >
-        ⬅️
+        ⬅️ back
       </Button>
 
       {message && (

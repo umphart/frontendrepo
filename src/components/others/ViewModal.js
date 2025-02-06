@@ -15,7 +15,7 @@ const ViewModal = () => {
     <div style={styles.container}>
       {/* Arrow for navigating back to previous page */}
       <div style={styles.arrow} onClick={() => navigate(-1)}>
-        ⬅️
+        ⬅️ Back
       </div>
 
       <h2 style={styles.heading}>View Examination</h2>
@@ -59,6 +59,7 @@ const styles = {
   },
   arrow: {
     position: 'absolute',
+    color:'green',
     top: '20px',
     left: '20px',
     fontSize: '15px',
