@@ -8,7 +8,7 @@ const PrimaryRecord = () => {
         { label: 'Third Term', value: 'third_term' },
     ]);
 
-    const [selectedTerm, setSelectedTerm] = useState('first_term'); // Default to 'first_term'
+    const [selectedTerm, setSelectedTerm] = useState('first_term');
     const [examRecords, setExamRecords] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -53,24 +53,7 @@ const PrimaryRecord = () => {
             grouped[studentID].subjects.push({ subject, grade });
         });
 
-        const groupedArray = Object.values(grouped);
-
-        // Sorting: first by className and then by studentID
-        groupedArray.sort((a, b) => {
-            // Special handling for "Primary 1"
-            if (a.className === 'Primary 1' && b.className !== 'Primary 1') return -1;
-            if (b.className === 'Primary 1' && a.className !== 'Primary 1') return 1;
-        
-            // Sort by className
-            if (a.className > b.className) return 1;
-            if (a.className < b.className) return -1;
-        
-            // If className is the same, sort by studentID (ascending)
-            return a.studentID - b.studentID;
-        });
-        
-        return groupedArray;
-        
+        return Object.values(grouped).sort((a, b) => a.className.localeCompare(b.className) || a.studentID - b.studentID);
     };
 
     return (
@@ -79,12 +62,7 @@ const PrimaryRecord = () => {
                 <h2 style={styles.heading}>Primary Exam Records</h2>
                 <div style={styles.selectContainer}>
                     <label style={styles.selectLabel}>Select Term:</label>
-                    <select
-                        style={styles.select}
-                        value={selectedTerm}
-                        onChange={handleTermChange}
-                    >
-                        <option value="">Select Term</option>
+                    <select style={styles.select} value={selectedTerm} onChange={handleTermChange}>
                         {terms.map((term) => (
                             <option key={term.value} value={term.value}>
                                 {term.label}
@@ -97,124 +75,121 @@ const PrimaryRecord = () => {
             {loading && <p>Loading exam records...</p>}
             {error && <p style={styles.error}>{error}</p>}
 
-            <table style={styles.table}>
-    <thead>
-        <tr>
-            <th style={{ ...styles.tableHeader, width: '50px' }}>S/N</th>
-            <th style={styles.tableHeader}>Student ID</th>
-            <th style={styles.tableHeader}>Student Name</th>
-            <th style={styles.tableHeader}>Class</th>
-            <th style={styles.tableHeader}>Subjects and Grades</th>
-        </tr>
-    </thead>
-    <tbody>
-        {groupByStudent(examRecords).map((student, index) => (
-            <tr key={student.studentID}>
-                {/* Add Serial Number with Reduced Width */}
-                <td style={{ ...styles.tableCell, width: '50px', textAlign: 'center' }}>
-                    {index + 1}
-                </td>
-                <td style={styles.tableCell}>{student.studentID}</td>
-                <td style={styles.studentNameCell}>{student.studentName}</td>
-                <td style={styles.tableCell}>{student.className}</td>
-                <td style={styles.subjectsCell}>
-                    <table style={styles.innerTable}>
-                        <thead>
-                            <tr>
-                                {student.subjects.map((subject, i) => (
-                                    <th
-                                        key={`${student.studentID}-subject-${i}`}
-                                        style={styles.innerTableHeader}
-                                    >
-                                        {subject.subject}
-                                    </th>
-                                ))}
+            <div style={styles.tableWrapper}>
+                <table style={styles.table}>
+                    <thead>
+                        <tr>
+                            <th style={{ ...styles.tableHeader, width: '50px' }}>S/N</th>
+                            <th style={styles.tableHeader}>Student ID</th>
+                            <th style={styles.tableHeader}>Student Name</th>
+                            <th style={styles.tableHeader}>Class</th>
+                            <th style={styles.tableHeader}>Subjects & Grades</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {groupByStudent(examRecords).map((student, index) => (
+                            <tr key={student.studentID}>
+                                <td style={{ ...styles.tableCell, width: '50px', textAlign: 'center' }}>{index + 1}</td>
+                                <td style={styles.tableCell}>{student.studentID}</td>
+                                <td style={styles.studentNameCell}>{student.studentName}</td>
+                                <td style={styles.tableCell}>{student.className}</td>
+                                <td style={styles.subjectsCell}>
+                                    <table style={styles.innerTable}>
+                                        <thead>
+                                            <tr>
+                                                {student.subjects.map((subject, i) => (
+                                                    <th key={`${student.studentID}-subject-${i}`} style={styles.innerTableHeader}>
+                                                        {subject.subject}
+                                                    </th>
+                                                ))}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {student.subjects.map((subject, i) => (
+                                                    <td key={`${student.studentID}-grade-${i}`} style={styles.innerTableCell}>
+                                                        {subject.grade}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                {student.subjects.map((subject, i) => (
-                                    <td
-                                        key={`${student.studentID}-grade-${i}`}
-                                        style={styles.innerTableCell}
-                                    >
-                                        {subject.grade}
-                                    </td>
-                                ))}
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        ))}
-    </tbody>
-</table>
-
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
 
 const styles = {
     container: {
-        padding: '30px',
+        padding: '20px',
         maxWidth: '100%',
         margin: '0 auto',
         backgroundColor: '#f9fafb',
-        borderRadius: '12px',
-        boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+        borderRadius: '8px',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         fontFamily: "'Poppins', sans-serif",
     },
     headingContainer: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: '10px',
+        flexWrap: 'wrap',
+        marginBottom: '15px',
     },
     heading: {
-        fontSize: '25px',
+        fontSize: '22px',
         fontWeight: 'bold',
         color: '#3347B0',
-        margin: 0,
+        marginBottom: '10px',
     },
     selectContainer: {
         display: 'flex',
         alignItems: 'center',
+        flexWrap: 'wrap',
     },
     selectLabel: {
-        fontSize: '18px',
+        fontSize: '16px',
         marginRight: '10px',
     },
     select: {
-        padding: '10px',
-        fontSize: '16px',
-        width: '200px',
+        padding: '8px',
+        fontSize: '14px',
         borderRadius: '6px',
         border: '1px solid #ddd',
+    },
+    tableWrapper: {
+        overflowX: 'auto',
+        width: '100%',
     },
     table: {
         width: '100%',
         borderCollapse: 'collapse',
-        marginTop: '20px',
+        minWidth: '600px',
     },
     tableHeader: {
         backgroundColor: '#3347B0',
         color: '#fff',
-        padding: '12px',
+        padding: '10px',
         textAlign: 'left',
-        fontSize: '16px',
+        fontSize: '14px',
     },
     tableCell: {
-        padding: '10px',
+        padding: '8px',
         borderBottom: '1px solid #ddd',
         fontSize: '14px',
         color: '#555',
     },
     studentNameCell: {
-        padding: '10px',
+        padding: '8px',
         borderBottom: '1px solid #ddd',
         fontSize: '14px',
         color: '#555',
-        width: '160px',
+        minWidth: '140px',
     },
     subjectsCell: {
         padding: '0',
@@ -227,21 +202,40 @@ const styles = {
     innerTableHeader: {
         backgroundColor: '#f0f0f0',
         color: '#333',
-        padding: '8px',
+        padding: '6px',
         textAlign: 'center',
-        fontSize: '14px',
+        fontSize: '13px',
         borderBottom: '1px solid #ddd',
     },
     innerTableCell: {
-        padding: '8px',
+        padding: '6px',
         textAlign: 'center',
-        fontSize: '14px',
+        fontSize: '13px',
         borderBottom: '1px solid #ddd',
     },
     error: {
         color: 'red',
-        fontSize: '16px',
+        fontSize: '14px',
         textAlign: 'center',
+    },
+    '@media (max-width: 768px)': {
+        headingContainer: {
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center',
+        },
+        tableHeader: {
+            fontSize: '10px',
+            padding: '5px',
+            width:'20px',
+        },
+        tableCell: {
+            fontSize: '12px',
+            padding: '6px',
+        },
+        select: {
+            width: '100%',
+        },
     },
 };
 

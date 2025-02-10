@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';  
+import React, { useState, useEffect } from 'react';   
 import axios from 'axios';
-import { Button } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 
 const UpdateStudent = () => {
   const navigate = useNavigate();  // Use navigate hook
-
   const [studentList, setStudentList] = useState([]);
   const [selectedStudentId, setSelectedStudentId] = useState('');
   const [student, setStudent] = useState({
@@ -13,12 +11,15 @@ const UpdateStudent = () => {
     section: '',
     class: '',
     dob: '',
+    gender: '',
+    guidanceName: '', 
     guidanceContact: '',
+    profilePhoto:'',
   });
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [photo, setPhoto] = useState(null); // For photo upload
+  const [photo, setPhoto] = useState(null);
 
   // Fetch all students
   const fetchStudents = () => {
@@ -55,7 +56,10 @@ const UpdateStudent = () => {
             section: studentData.section,
             class: studentData.class,
             dob: studentData.dob,
+            gender: studentData.gender,
+            guidanceName: studentData.guidanceName,
             guidanceContact: studentData.guidanceContact,
+            profilePhoto: studentData.profilePhoto
           });
           setLoading(false);
         })
@@ -70,6 +74,8 @@ const UpdateStudent = () => {
         class: '',
         dob: '',
         guidanceContact: '',
+        guidanceName: '', 
+        profilePhoto: '',
       });
     }
   };
@@ -92,7 +98,7 @@ const UpdateStudent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!selectedStudentId || !student.section || !student.class || !student.dob || !student.guidanceContact) {
+    if (!selectedStudentId || !student.section || !student.class || !student.dob || !student.guidanceContact || !student.guidanceName) {
       setMessage('Please provide all necessary details.');
       return;
     }
@@ -102,31 +108,34 @@ const UpdateStudent = () => {
     formData.append('section', student.section);
     formData.append('class', student.class);
     formData.append('dob', student.dob);
+    formData.append('gender', student.gender);
+    formData.append('guidanceName', student.guidanceName);  // Added guidanceName
     formData.append('guidanceContact', student.guidanceContact);
     if (photo) {
       formData.append('photo', photo);
     }
 
     setLoading(true);
-    axios.put(`http://localhost:5000/api/students/update/${encodeURIComponent(selectedStudentId)}`, formData)
-    .then(() => {
-      setMessage('Student updated successfully!');
-      setLoading(false);
-      setSelectedStudentId('');
-      setStudent({
-        name: '',
-        section: '',
-        class: '',
-        dob: '',
-        guidanceContact: '',
+    axios.put(`http://localhost:5000/api/update-student/${encodeURIComponent(selectedStudentId)}`, formData)
+      .then(() => {
+        setMessage('Student updated successfully!');
+        setLoading(false);
+        setSelectedStudentId('');
+        setStudent({
+          name: '',
+          section: '',
+          class: '',
+          dob: '',
+          guidanceContact: '',
+          guidanceName: '', 
+        });
+        setPhoto(null);
+      })
+      .catch((error) => {
+        setMessage('Error updating student.');
+        console.error('Error:', error);
+        setLoading(false);
       });
-      setPhoto(null);
-    })
-    .catch((error) => {
-      setMessage('Error updating student.');
-      console.error('Error:', error);
-      setLoading(false);
-    });
   };
 
   // Filter students based on search query
@@ -194,14 +203,13 @@ const UpdateStudent = () => {
 
   return (
     <div style={styles.container}>
-     {/* Back Arrow Button */}
+      {/* Back Arrow Button */}
       <button 
         style={styles.backButton} 
         onClick={() => navigate(-1)} // This will go back to the previous page
       >
         ⬅️ Back
       </button>
-
 
       <h2 style={styles.heading}>Update Student</h2>
       {message && (
@@ -294,6 +302,22 @@ const UpdateStudent = () => {
               />
             </div>
             <div style={styles.formGroup}>
+              <label style={styles.label}>Gender:</label>
+              <select
+                name="gender"
+                value={student.gender}
+                onChange={handleChange}
+                required
+                style={styles.selectInput}
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div style={styles.formGroup}>
               <label style={styles.label}>Guidance Contact:</label>
               <input
                 type="text"
@@ -306,10 +330,23 @@ const UpdateStudent = () => {
             </div>
 
             <div style={styles.formGroup}>
+              <label style={styles.label}>Guidance Name:</label>
+              <input
+                type="text"
+                name="guidanceName"
+                value={student.guidanceName}
+                onChange={handleChange}
+                required
+                style={styles.input}
+              />
+            </div>
+
+            <div style={styles.formGroup}>
               <label style={styles.label}>Upload Photo:</label>
               <input
                 type="file"
                 name="photo"
+                value={student.photo}
                 onChange={handleFileChange}
                 style={styles.input}
               />
@@ -440,7 +477,6 @@ const styles = {
     border: 'none',
     backgroundColor: 'transparent',
     cursor: 'pointer',
- 
     textAlign: 'left',
   },
 };
