@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 import { Link } from 'react-router-dom';
-import {FaSignOutAlt, FaTachometerAlt , FaBars,  FaBookOpen } from 'react-icons/fa'; // Importing icons
+import {FaSignOutAlt, FaTachometerAlt , FaBars, FaSave, FaBookOpen } from 'react-icons/fa'; // Importing icons
 
 // Sidebar component
 const StudentSidebar = () => {

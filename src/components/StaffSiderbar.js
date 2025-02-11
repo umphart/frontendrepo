@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {  FaSignOutAlt, FaTachometerAlt, FaBars, FaUserCircle, FaClipboardList,FaEdit, FaEye, FaReceipt, FaBookOpen } from 'react-icons/fa';
+import {  FaSignOutAlt, FaTachometerAlt, FaBars, FaUserCircle, FaClipboardList,FaEdit, FaEye, FaReceipt, FaSave, FaBookOpen } from 'react-icons/fa';
 
 const StaffSidebar = () => {
   const [isHovered, setIsHovered] = useState(false);
