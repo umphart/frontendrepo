@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 import { Link } from 'react-router-dom';
-import { FaUsers, FaList, FaSignOutAlt, FaTachometerAlt , FaBars, FaUserCircle, FaClipboardList, FaTasks, FaAccessibleIcon, FaBabyCarriage, FaEdit, FaEyeDropper, FaEyeSlash, FaReceipt, FaCapsules, FaSearch, FaSave, FaCamera, FaSass, FaLaptopHouse, FaLaptop, FaBookOpen } from 'react-icons/fa'; // Importing icons
+import {FaSignOutAlt, FaTachometerAlt , FaBars,  FaBookOpen } from 'react-icons/fa'; // Importing icons
 
 // Sidebar component
 const StudentSidebar = () => {
@@ -34,18 +34,18 @@ const StudentSidebar = () => {
   );
 };
 
-// Sidebar styles with dynamic width based on isHovered
+// Sidebar styles with dynamic width and background color based on hover state
 const sidebarStyle = (isHovered) => ({
-  width: isHovered ? '200px' : '50px', // Expand when hovered, collapse when not
+  width: isHovered ? '200px' : '50px',
   height: '100vh',
-  background: '#2c3e50',  // Darker background for better contrast
-  color: '#fff',  // White text
+  background: isHovered ? '#2c3e50' : 'transparent',  // Transparent when minimized
+  color: '#fff',
   padding: '5px',
   boxSizing: 'border-box',
   position: 'fixed',
   top: 0,
   left: 0,
-  transition: 'width 0.3s ease', // Smooth transition for sidebar expansion/collapse
+  transition: 'width 0.3s ease, background 0.3s ease', // Add transition for background
   overflow: 'hidden',
   zIndex: 1000,
 });

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {  FaSignOutAlt, FaTachometerAlt, FaBars, FaUserCircle, FaClipboardList,FaEdit, FaEye, FaReceipt, FaCapsules, FaSearch, FaSave, FaCamera, FaSass, FaLaptopHouse, FaLaptop, FaBookOpen } from 'react-icons/fa';
+import {  FaSignOutAlt, FaTachometerAlt, FaBars, FaUserCircle, FaClipboardList,FaEdit, FaEye, FaReceipt, FaBookOpen } from 'react-icons/fa';
 
 const StaffSidebar = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -38,21 +38,21 @@ const StaffSidebar = () => {
   );
 };
 
+// Sidebar styles with dynamic width and background color based on hover state
 const sidebarStyle = (isHovered) => ({
   width: isHovered ? '200px' : '50px',
   height: '100vh',
-  background: '#34495e', // Slightly different dark shade for a modern look
+  background: isHovered ? '#2c3e50' : 'transparent',  // Transparent when minimized
   color: '#fff',
-  padding: '10px 0',  // Improved padding for better spacing
+  padding: '5px',
   boxSizing: 'border-box',
   position: 'fixed',
   top: 0,
   left: 0,
-  transition: 'width 0.3s ease',
+  transition: 'width 0.3s ease, background 0.3s ease', // Add transition for background
   overflow: 'hidden',
   zIndex: 1000,
 });
-
 const headerStyle = {
   textAlign: 'center',
   marginBottom: '30px',

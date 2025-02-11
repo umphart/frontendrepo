@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from './Sidebar'; // Ensure the path is correct
+import StudnetSidebar from './StudentSidebar'; // Ensure the path is correct
 import { Outlet } from 'react-router-dom';
 import schoolLogo from './images/logo2.jpg'; // Import the logo image
 
@@ -59,7 +59,7 @@ const StudentLayout = () => {
 
   return (
     <div style={layoutStyle}>
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <StudnetSidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div style={contentStyle}>
         <header style={headerStyle}>
           <h1 style={titleStyle}>UMAR PHAROUQ INTERNATINAL SCHOOL</h1>
