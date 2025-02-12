@@ -66,6 +66,9 @@ import AddSubject from './components/AddSubject';
 import AssignSubject from './components/AssignSubject';
 import UnassignSubject from './components/others/UnassignSubject';
 import RecordNavigator from './components/others/RecordNavigator';
+import AlbumComponent from './components/others/AlbumComponent';
+import StudentPhotos from './components/others/StudentPhotos';
+import StaffPhotos from './components/others/StaffPhotos';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -148,6 +151,9 @@ function App() {
           <Route path="subject" element={<AddSubject/>} />
           <Route path="assign-subject" element={<AssignSubject/>} />
           <Route path="unassign-subject" element={<UnassignSubject/>} />
+          <Route path="album" element={<AlbumComponent/>} />
+          <Route path="student-photos" element={<StudentPhotos/>} />
+          <Route path="staff-photos" element={<StaffPhotos/>} />
         </Route>
           {/* Add more routes here for Admin */}
         
@@ -193,6 +199,7 @@ function App() {
           <Route path="exam-modal" element={<ExamModalStaff />} />
           <Route path="view-result" element={<StudentResults />} />
           <Route path="staff-profile" element={<StaffProfile/>} />
+          
           <Route path="logout" element={<Logout />} />
           
         </Route>

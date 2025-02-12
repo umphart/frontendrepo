@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
-import { FaUsers, FaTasks, FaChartBar, FaCog, FaBook } from 'react-icons/fa'; // Imported FaBook for Manage Subjects
+import { FaUsers, FaTasks, FaPhotoVideo, FaBook } from 'react-icons/fa'; // Imported FaBook for Manage Subjects
 import Slider from 'react-slick';
 import { Bar } from 'react-chartjs-2';
 import { Table, Container, Row, Col } from 'reactstrap';
@@ -209,7 +209,7 @@ const AdminDashboard = () => {
           {[{ icon: <FaUsers size={50} />, label: 'Manage Students', path: 'manage-students' },
             { icon: <FaUsers size={50} />, label: 'Manage Staff', path: 'manage-staff' },
             { icon: <FaTasks size={50} />, label: 'Sections and Classes', path: 'sections' },
-            // { icon: <FaChartBar size={50} />, label: 'Exam and Reports', path: 'exam-report' },
+            { icon: <FaPhotoVideo size={50} />, label: 'Photo Album', path: 'album' },
             { icon: <FaBook size={50} />, label: 'Manage Subjects', path: 'subject' }].map((item, index) => (
               <div key={index} style={styles.iconItem} onClick={() => handleRedirect(item.path)}>
                 <div style={styles.icon}>{item.icon}</div>
@@ -353,6 +353,25 @@ const styles = {
     flexWrap: 'wrap',
     gap: '20px',
   },
+  
+  chartContainer: {
+    maxWidth: '500px',
+    margin: '0 auto',
+    
+  },
+  image: {
+    width: '300px',
+    height: '200px',
+    borderRadius: '10px',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+  },
+  iconList: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    gap: '20px',
+    marginTop: '20px',
+  },
   iconItem: {
     display: 'flex',
     color: '#3347B0',
@@ -365,23 +384,28 @@ const styles = {
     borderRadius: '10px',
     backgroundColor: '#f4f7fa',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
+    textAlign: 'center',
   },
+  // Update for responsive design using media queries
+  '@media (max-width: 768px)': {
+    iconItem: {
+      width: '45%', // Adjust width on medium screens
+    },
+  },
+  '@media (max-width: 480px)': {
+    iconItem: {
+      width: '80%', // Adjust width on small screens (mobile)
+    },
+    icon: {
+      fontSize: '30px', // Smaller icons on mobile devices
+    },
+  },
+  // Make sure text inside the icon items remains readable on small screens
   iconText: {
     marginTop: '10px',
     textAlign: 'center',
     color: '#555',
-    fontSize: '15px',
-  },
-  chartContainer: {
-    maxWidth: '500px',
-    margin: '0 auto',
-    
-  },
-  image: {
-    width: '300px',
-    height: '200px',
-    borderRadius: '10px',
-    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+    fontSize: '14px', // Adjust text size for mobile
   },
 };
 

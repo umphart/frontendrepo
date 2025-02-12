@@ -1,11 +1,12 @@
   import React from 'react';     
-  import { FaChalkboardTeacher, FaPencilAlt, FaGraduationCap } from 'react-icons/fa'; 
+  import { FaChalkboardTeacher, FaPencilAlt, FaGraduationCap, FaPhotoVideo } from 'react-icons/fa'; 
   import { useNavigate } from 'react-router-dom';
-  import Slider from 'react-slick';  // Import Slider component
   import 'slick-carousel/slick/slick.css';
   import 'slick-carousel/slick/slick-theme.css';
+import { FaPhotoFilm } from 'react-icons/fa6';
+import { FcStackOfPhotos } from 'react-icons/fc';
 
-  const Modal = () => {
+  const AlbumComponent = () => {
     const navigate = useNavigate();
 
     const handleRedirect = (path) => {
@@ -22,21 +23,21 @@
           ⬅️ Back
         </button>
 
-        <h2 style={styles.heading}>Manage Section</h2>
-        <p style={styles.subheading}>Manage Section and Class effortlessly.</p>
+        <h2 style={styles.heading}>Manage Album</h2>
+        <p style={styles.subheading}>Manage Staff and Student Photos  effortlessly.</p>
 
         <div style={styles.section}>
           <div style={styles.iconList}>
             {/*  Sections Icon */}
-            <div style={styles.iconItem} onClick={() => handleRedirect('/admin/manage-section')}>
-              <FaChalkboardTeacher size={50} style={styles.icon} />
-              <p style={styles.iconText}>Sections</p>
+            <div style={styles.iconItem} onClick={() => handleRedirect('/admin/student-photos')}>
+              <FaPhotoVideo size={50} style={styles.icon} />
+              <p style={styles.iconText}>Student Photos</p>
             </div>
 
             {/* Classes Icon */}
-            <div style={styles.iconItem} onClick={() => handleRedirect('/admin/class-section')}>
-              <FaGraduationCap size={50} style={styles.icon} />
-              <p style={styles.iconText}>Classes</p>
+            <div style={styles.iconItem} onClick={() => handleRedirect('/admin/staff-photos')}>
+              <FaPhotoFilm size={50} style={styles.icon} />
+              <p style={styles.iconText}>Staff Photos</p>
             </div>
           </div>
         </div>
@@ -66,7 +67,7 @@
       border: 'none',
       cursor: 'pointer',
       color: '#007bff',
-      textDecoration: 'none', 
+      textDecoration: 'none', // Remove underline from button text
     },
     heading: {
       fontSize: '36px',
@@ -143,4 +144,4 @@
     },
   };
 
-  export default Modal;
+  export default AlbumComponent;
