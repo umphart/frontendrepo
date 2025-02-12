@@ -1,4 +1,4 @@
-import { FaUserCircle } from 'react-icons/fa';  
+import { FaUserCircle } from 'react-icons/fa';   
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,8 @@ const Modal = ({ staffMember, onClose, position }) => {
       onClick={onClose}
     >
       <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <h2><strong>{staffMember.name}</strong></h2>
+        <span style={styles.closeButton} onClick={onClose}>❌</span>
+        <h4><strong>{staffMember.name}</strong></h4>
         <table style={styles.table}>
           <tbody>
             <tr>
@@ -36,14 +37,12 @@ const Modal = ({ staffMember, onClose, position }) => {
               <td style={styles.tableLabel}><strong>Gender:</strong></td>
               <td>{staffMember.gender}</td>
             </tr>
-           
             <tr>
               <td style={styles.tableLabel}><strong>Phone:</strong></td>
               <td>{staffMember.phone}</td>
             </tr>
           </tbody>
         </table>
-        <button onClick={onClose} style={styles.closeButton}>Close</button>
       </div>
     </div>
   );
@@ -90,15 +89,14 @@ const StaffPhotos = () => {
 
   return (
     <div style={styles.container}>
- <button 
-  onClick={() => navigate(-1)} // Navigate to the previous page
-  style={styles.arrowButton}
->
-  ⬅️ Back
-</button>
+      <button 
+        onClick={() => navigate(-1)} // Navigate to the previous page
+        style={styles.arrowButton}
+      >
+        ⬅️ Back
+      </button>
 
-
-      <h1 style={styles.heading}>Staff Photos</h1> 
+      <h1 style={styles.heading}>Staff Photos</h1>
       <div style={styles.gridContainer}>
         {staff.map(staffMember => ( 
           <div key={staffMember.staffID} style={styles.staffCard} onClick={(event) => openModal(staffMember, event)}>
@@ -137,15 +135,15 @@ const styles = {
     position: 'relative',  // Add this line to position elements inside relative to this container
   },
   heading: {
-    fontSize: '24px',
+    fontSize: '22px',
     fontWeight: '600',
     color: '#333',
-    marginBottom: '10px',
+    marginBottom: '15px',
   },
   gridContainer: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
-    gap: '13px',
+    gap: '15px',
     padding: '5px',
   },
   staffCard: { 
@@ -157,15 +155,15 @@ const styles = {
     cursor: 'pointer',
   },
   staffID: {  
-    fontSize: '16px',
+    fontSize: '14px',
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: '1px',
+    marginBottom: '5px',
   },
   staffName: {  
-    fontSize: '14px',
+    fontSize: '12px',
     color: '#555',
-    marginBottom: '1px',
+    marginBottom: '5px',
   },
   staffPhotoContainer: {  
     display: 'flex',
@@ -183,25 +181,24 @@ const styles = {
   modalOverlay: {
     position: 'absolute', // Position modal using top/left properties
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    padding: '20px',
+    padding: '10px',
     borderRadius: '10px',
-    width: '350px', // Reduced width
+    width: '300px', // Reduced width
     zIndex: 1000, // Ensures the modal is above other content
   },
   modalContent: {
     backgroundColor: 'white',
-    padding: '20px',
+    padding: '15px',
     borderRadius: '10px',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   closeButton: {
-    backgroundColor: '#ff6f61',
-    color: 'white',
-    padding: '8px 16px',
-    border: 'none',
-    borderRadius: '5px',
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    fontSize: '15px',
     cursor: 'pointer',
-    marginTop: '10px',
+    color: '#888',
   },
 
   // Table styles for the modal content
@@ -210,13 +207,21 @@ const styles = {
     marginTop: '10px',
     borderCollapse: 'collapse',
   },
+  tableRow: {
+    borderBottom: '1px solid #ddd',
+  },
   tableLabel: {
     textAlign: 'right',
     paddingRight: '10px',
     fontWeight: 'bold',
+    fontSize: '12px',  // Reduced font size for labels
   },
+  tableData: {
+    fontSize: '12px',
+  },
+  
   arrowButton: {
-    position: 'absolute', // Positioning it absolutely inside the container
+    position: 'absolute', 
     top: '15px',
     left: '15px',
     fontSize: '15px',
@@ -224,10 +229,8 @@ const styles = {
     backgroundColor: 'transparent',
     border: 'none',
     cursor: 'pointer',
-    color: '#007bff', // Blue color for the arrow button
-    zIndex: 999, // Ensures it appears above the grid
+    color: '#007bff', 
   },
 };
-
 
 export default StaffPhotos;

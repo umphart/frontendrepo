@@ -2,7 +2,6 @@ import { FaUserCircle } from 'react-icons/fa';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Modal component to display student details
 const Modal = ({ student, onClose, position }) => {
   if (!student) return null;
 
@@ -12,37 +11,37 @@ const Modal = ({ student, onClose, position }) => {
         ...styles.modalOverlay,
         top: position.top,
         left: position.left,
-        position: 'absolute', // Absolute positioning relative to the page
+        position: 'absolute',
       }} 
       onClick={onClose}
     >
       <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <h4><strong>{student.name}</strong></h4>
+        <span style={styles.closeButton} onClick={onClose}>❌</span> {/* Close Button "X" */}
+        <h5><strong>{student.name}</strong></h5>
         <table style={styles.table}>
           <tbody>
-            <tr>
+            <tr style={styles.tableRow}>
               <td style={styles.tableLabel}><strong>Student ID:</strong></td>
-              <td>{student.studentID}</td>
+              <td style={styles.tableData}>{student.studentID}</td>
             </tr>
-            <tr>
+            <tr style={styles.tableRow}>
               <td style={styles.tableLabel}><strong>Class:</strong></td>
-              <td>{student.class}</td>
+              <td style={styles.tableData}>{student.class}</td>
             </tr>
-            <tr>
+            <tr style={styles.tableRow}>
               <td style={styles.tableLabel}><strong>Gender:</strong></td>
-              <td>{student.gender}</td>
+              <td style={styles.tableData}>{student.gender}</td>
             </tr>
-            <tr>
+            <tr style={styles.tableRow}>
               <td style={styles.tableLabel}><strong>Guidance Name:</strong></td>
-              <td>{student.guidanceName}</td>
+              <td style={styles.tableData}>{student.guidanceName}</td>
             </tr>
-            <tr>
+            <tr style={styles.tableRow}>
               <td style={styles.tableLabel}><strong>Guidance Contact:</strong></td>
-              <td>{student.guidanceContact}</td>
+              <td style={styles.tableData}>{student.guidanceContact}</td>
             </tr>
           </tbody>
         </table>
-        <button onClick={onClose} style={styles.closeButton}>Close</button>
       </div>
     </div>
   );
@@ -121,12 +120,11 @@ const StudentPhotos = () => {
       <Modal student={selectedStudent} onClose={closeModal} position={modalPosition} />
     </div>
   );
-};
-
-// Styles for the component
+};// Styles for the component
+// Modal styles for responsiveness
 const styles = {
   container: {
-    position: 'relative',  // This ensures the arrow button stays relative to the container
+    position: 'relative',
     marginTop: '5px',
     padding: '10px',
     backgroundColor: '#fff',
@@ -135,7 +133,7 @@ const styles = {
     textAlign: 'center',
   },
   heading: {
-    fontSize: '24px',
+    fontSize: '22px',
     fontWeight: '600',
     color: '#333',
     marginBottom: '15px',
@@ -155,7 +153,7 @@ const styles = {
     cursor: 'pointer',
   },
   arrowButton: {
-    position: 'absolute', // Positioning it absolutely inside the container
+    position: 'absolute',
     top: '15px',
     left: '15px',
     fontSize: '15px',
@@ -166,7 +164,7 @@ const styles = {
     color: '#007bff',
   },
   studentID: {
-    fontSize: '16px',
+    fontSize: '14px',
     fontWeight: 'bold',
     color: '#333',
     marginBottom: '5px',
@@ -190,27 +188,34 @@ const styles = {
 
   // Modal styles
   modalOverlay: {
-    position: 'absolute', // Position modal using top/left properties
+    position: 'absolute',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    padding: '20px',
+    padding: '10px',
     borderRadius: '10px',
-    width: '350px', // Reduced width
-    zIndex: 1000, // Ensures the modal is above other content
+    width: '300px', // Modal width for larger screens
+    maxWidth: '95%', // Ensure the modal doesn’t overflow on small screens
+    zIndex: 1000,
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)', // Center the modal
+    boxSizing: 'border-box', // Include padding in the element's width
   },
   modalContent: {
     backgroundColor: 'white',
-    padding: '10px',
+    padding: '15px',
     borderRadius: '10px',
-   
+    position: 'relative',
+    textAlign: 'left',
+    maxHeight: '80vh', // Limit modal height on small screens
+    overflowY: 'auto', // Allow scrolling if content overflows
   },
   closeButton: {
-    backgroundColor: '#ff6f61',
-    color: 'white',
-    padding: '8px 16px',
-    border: 'none',
-    borderRadius: '5px',
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    fontSize: '15px',
     cursor: 'pointer',
-    marginTop: '10px',
+    color: '#888',
   },
 
   // Table styles for the modal content
@@ -219,10 +224,52 @@ const styles = {
     marginTop: '10px',
     borderCollapse: 'collapse',
   },
+  tableRow: {
+    borderBottom: '1px solid #ddd',
+  },
   tableLabel: {
     textAlign: 'right',
     paddingRight: '10px',
     fontWeight: 'bold',
+    fontSize: '12px',
+    paddingTop: '5px',
+    paddingBottom: '5px',
+  },
+  tableData: {
+    fontSize: '12px',
+    paddingTop: '5px',
+    paddingBottom: '5px',
+  },
+  tableRowAlternate: {
+    backgroundColor: '#f7f7f7',
+  },
+
+  // Media Queries for responsiveness
+  '@media (max-width: 768px)': {
+    modalOverlay: {
+      width: '80%', // Take up more width on medium screens, but keep the aspect ratio
+      maxWidth: '90%',
+    },
+    modalContent: {
+      padding: '10px',
+      fontSize: '14px',
+    },
+    closeButton: {
+      fontSize: '16px', // Adjust close button size for smaller screens
+    },
+  },
+
+  '@media (max-width: 480px)': {
+    modalOverlay: {
+      width: '90%', // Modal will take up 90% of the screen width on small devices
+    },
+    modalContent: {
+      padding: '5px',
+      fontSize: '12px', // Adjust font size for very small screens
+    },
+    closeButton: {
+      fontSize: '14px', // Smaller close button
+    },
   },
 };
 
