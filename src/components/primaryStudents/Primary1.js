@@ -8,7 +8,7 @@ const Primary1 = () => {
     const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('/primary1')
+    axios.get('http://localhost:5000/api/primary1')
       .then(response => {
         setStudents(response.data);
         setLoading(false);
