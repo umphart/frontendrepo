@@ -209,8 +209,9 @@ const AdminDashboard = () => {
           {[{ icon: <FaUsers size={50} />, label: 'Manage Students', path: 'manage-students' },
             { icon: <FaUsers size={50} />, label: 'Manage Staff', path: 'manage-staff' },
             { icon: <FaTasks size={50} />, label: 'Sections and Classes', path: 'sections' },
-            { icon: <FaPhotoVideo size={50} />, label: 'Photo Album', path: 'album' },
-            { icon: <FaBook size={50} />, label: 'Manage Subjects', path: 'subject' }].map((item, index) => (
+            { icon: <FaBook size={50} />, label: 'Manage Subjects', path: 'subject' },
+            { icon: <FaPhotoVideo size={50} />, label: 'Photo Album', path: 'album' },  
+          ].map((item, index) => (
               <div key={index} style={styles.iconItem} onClick={() => handleRedirect(item.path)}>
                 <div style={styles.icon}>{item.icon}</div>
                 <p style={styles.iconText}>{item.label}</p>

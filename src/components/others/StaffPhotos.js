@@ -158,12 +158,12 @@ const styles = {
     fontSize: '14px',
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: '5px',
+    marginBottom: '-7px',
   },
   staffName: {  
     fontSize: '12px',
     color: '#555',
-    marginBottom: '5px',
+    marginBottom: '0px',
   },
   staffPhotoContainer: {  
     display: 'flex',

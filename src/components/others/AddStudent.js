@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 
 const AddStudent = ({ onStudentAdded }) => {
   const navigate = useNavigate(); // Initialize the navigate hook
-
+  
   const [name, setName] = useState('');
   const [section, setSection] = useState('');
   const [gender, setGender] = useState('');
@@ -84,7 +84,7 @@ const AddStudent = ({ onStudentAdded }) => {
     }
   
     // Send the FormData to the server
-    axios.post('http://localhost:5000/api/add-student', formData)
+    axios.post('https://school-system-h4vu.onrender.com/api/add-student', formData)
       .then((response) => {
         setMessageType('success');
         setMessage(response.data.message);

@@ -167,12 +167,11 @@ const styles = {
     fontSize: '14px',
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: '5px',
+    marginBottom: '-7px',
   },
   studentName: {
     fontSize: '12px',
     color: '#555',
-    marginBottom: '5px',
   },
   studentPhotoContainer: {
     display: 'flex',
