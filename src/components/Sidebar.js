@@ -38,7 +38,7 @@ const Sidebar = () => {
           <SidebarItem to="/admin" icon={<FaTachometerAlt />} text="Dashboard" />
           <SidebarItem to="/admin/manage-students" icon={<FaUsers />} text="Manage Students" />
           <SidebarItem to="/admin/manage-staff" icon={<FaUserEdit />} text="Manage Staff" />
-          <SidebarItem to="/admin/manage-section" icon={<FaClipboardList />} text="Manage Sections" />
+          {/* <SidebarItem to="/admin/manage-section" icon={<FaClipboardList />} text="Manage Sections" /> */}
           <SidebarItem to="/admin/class-section" icon={<FaBookOpen />} text="Classes" />
           <SidebarItem to="/admin/exam-report" icon={<FaReceipt />} text="Exams & Reports" />
           <SidebarItem to="/admin/exam-modal" icon={<FaUserCheck />} text="Add Exam" />
