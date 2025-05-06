@@ -40,7 +40,7 @@ const AddStaff = () => {
       formData.append('photo', photo); // 'photo' matches the field name in backend
     }
 
-    axios.post('https://schoolbackendcode.onrender.com/addStaff', formData)
+    axios.post('http://localhost:5000/api/add-staff', formData)
       .then((response) => {
         setMessageType('success');
         setMessage(response.data.message);

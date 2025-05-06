@@ -69,6 +69,7 @@ import RecordNavigator from './components/others/RecordNavigator';
 import AlbumComponent from './components/others/AlbumComponent';
 import StudentPhotos from './components/others/StudentPhotos';
 import StaffPhotos from './components/others/StaffPhotos';
+import StaffSubject from './components/StaffSubject';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -154,6 +155,7 @@ function App() {
           <Route path="album" element={<AlbumComponent/>} />
           <Route path="student-photos" element={<StudentPhotos/>} />
           <Route path="staff-photos" element={<StaffPhotos/>} />
+          <Route path="subject" element={<StaffSubject/>} />
         </Route>
           {/* Add more routes here for Admin */}
         
@@ -167,6 +169,7 @@ function App() {
             <StaffLayout/>
           </ProtectedRoute>
         }>
+          <Route path="subject" element={<StaffSubject/>} />
           <Route index element={<StaffDashboard />} />
           <Route path="sections" element={<StaffModal />} />
           <Route path="manage-primary" element={<PrimarySection />} />

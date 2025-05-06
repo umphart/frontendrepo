@@ -62,7 +62,7 @@ const AdminLayout = () => {
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div style={contentStyle}>
         <header style={headerStyle}>
-          <h1 style={titleStyle}>UMAR PHAROUQ INTERNATINAL SCHOOL</h1>
+          <h1 style={titleStyle}>PHAROUQ INTERNATINAL SCHOOL</h1>
           <img src={schoolLogo} alt="School Logo" style={logoStyle} />
         </header>
         <div className="content">
